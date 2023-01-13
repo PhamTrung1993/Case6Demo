@@ -8,11 +8,17 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "roles")
-public class Role {
+public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String rating;
 
-    private String roleName;
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
 }

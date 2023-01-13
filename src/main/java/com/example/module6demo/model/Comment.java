@@ -8,16 +8,22 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Image {
+@AllArgsConstructor
+@Table(name = "comments")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition = "nvarchar(1000)")
-    private String imageName;
+    private String comment;
 
-//    public Image(String imageName) {
-//        this.imageName = imageName;
-//    }
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
+
+    private Boolean isRead;
 }
